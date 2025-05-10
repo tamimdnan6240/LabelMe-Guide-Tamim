@@ -6,11 +6,11 @@ This guide outlines how to annotate railroad crossing images for object classifi
 
 ✅ 1. Setup (Run Once)
 
-conda create -n labelme_env python=3.9 -y
-conda activate labelme_env
-pip install pyqt5==5.15.9
-pip install labelme==5.2.1
-pip install -r Requirements.txt
+conda create -n labelme_env python=3.9 -y  
+conda activate labelme_env  
+pip install pyqt5==5.15.9  
+pip install labelme==5.2.1  
+pip install -r Requirements.txt  
 
 > Ensures compatibility with LabelMe and PyQt GUI.
 
@@ -18,100 +18,104 @@ pip install -r Requirements.txt
 
 ✅ 2. Folder Structure
 
-project_root/
-├── cnn_images/                           # Input image root
-│   ├── Subfolder1/                       # e.g., Day/
-│   │   ├── img001.jpg
-│   │   ├── img002.jpg
-│   ├── Subfolder2/                       # e.g., Night/
-│   │   ├── img003.jpg
-│   │   └── img004.jpg
-├── Inclusion-exclusion-labels/          # Output LabelMe JSONs
-├── annotated_images_by_label/           # Final dataset by class
-│   ├── vehicle/
-│   ├── pedestrian/
-│   ├── train/
-│   └── empty/
-├── labelmeeeee-jsn-files-tamim-.py
-├── jsn-to-image.py
+project_root/  
+│  
+├── cnn_images/                          ← Input image root directory  
+│   ├── Day/                             ← Subfolder 1 (e.g., daytime images)  
+│   │   ├── image_001.jpg  
+│   │   ├── image_002.jpg  
+│   │   └── ...  
+│   ├── Night/                           ← Subfolder 2 (e.g., nighttime images)  
+│   │   ├── image_003.jpg  
+│   │   ├── image_004.jpg  
+│   │   └── ...  
+│  
+├── Inclusion-exclusion-labels/         ← Output folder for saved LabelMe .json files  
+│  
+├── annotated_images_by_label/          ← Final dataset organized by class  
+│   ├── vehicle/  
+│   ├── pedestrian/  
+│   ├── train/  
+│   └── empty/  
+│  
+├── labelmeeeee-jsn-files-tamim-.py     ← Script for annotation workflow  
+├── jsn-to-image.py                     ← Script to convert JSONs to annotated images  
 
-> Input structure supports nested folders like MainFolder/Subfolder/images
+> Nested folders inside cnn_images/ are supported.
 
 ------------------------------------------------------------
 
 ✅ 3. Annotation Workflow
 
-1. Activate environment:
-   conda activate labelme_env
+1. Activate environment:  
+   conda activate labelme_env  
 
-2. Edit labelmeeeee-jsn-files-tamim-.py to set your input path:
-   cnn_images/
+2. Edit `labelmeeeee-jsn-files-tamim-.py` to point to the input image folder (`annotated_images_by_label/`)  
 
-3. Run:
-   python labelmeeeee-jsn-files-tamim-.py
+3. Run:  
+   python labelmeeeee-jsn-files-tamim-.py  
 
-4. In a separate terminal, launch LabelMe:
-   labelme
+4. In a second terminal, launch LabelMe will open one by one images 
 
-5. For each image:
-   - Use the "Create Rectangle" tool (🔲)
-   - Draw bounding boxes and label them
-   - Save the .json file (same name as image)
+5. Inside LabelMe:  
+   - Use the "Create Rectangle" tool (🔲)  
+   - Draw bounding boxes and label each object  
+   - Save the `.json` file (same name as image - images and corresponding json should palced pairwisely.  
 
-6. Back in the terminal:
-   - Press ENTER
-   - Enter a class key:
-     v = vehicle, p = pedestrian, t = train, e = empty
+6. In the script terminal:  
+   - Press `ENTER`  
+   - Enter label key:  
+     v = vehicle, p = pedestrian, t = train, e = empty  
 
-7. Run to convert JSONs to images:
-   python jsn-to-image.py
+7. Convert saved JSONs into cropped images:  
+   python jsn-to-image.py  
 
-Now your images are ready for CNN training. YOLO conversion requires a separate format (e.g., labelme2yolo).
+Your dataset is now ready for CNN training. For YOLO, convert JSONs using `labelme2yolo`.
 
 ------------------------------------------------------------
 
 ✅ Labeling Shortcuts
 
-Key     Class
-----    -------------
-v       Vehicle
-p       Pedestrian
-t       Train
-e       Empty
+Key     Class  
+----    -------------  
+v       Vehicle  
+p       Pedestrian  
+t       Train  
+e       Empty  
 
 ------------------------------------------------------------
 
 ❗ Troubleshooting
 
-❌ Issue: "Nothing happens after entering folder paths"
-   → Save the .json file in LabelMe and press ENTER in terminal.
+❌ "Nothing happens after entering folder paths"  
+→ Make sure you've saved a `.json` file in LabelMe, then press ENTER.  
 
-❌ Issue: "Bounding boxes not visible"
-   → Use the rectangle tool, not polygon.
+❌ "Bounding boxes are not visible"  
+→ Use the rectangle tool instead of polygon.  
 
-❌ Issue: "LabelMe doesn’t launch or crashes"
-   → Ensure you're in the labelme_env environment:
-      conda activate labelme_env
-      labelme
+❌ "LabelMe doesn’t launch or crashes"  
+→ Make sure your conda environment is activated:  
+   conda activate labelme_env  
+   labelme  
 
 ------------------------------------------------------------
 
 ✅ Supported Formats
 
-- .jpg
-- .jpeg
-- .png
+- .jpg  
+- .jpeg  
+- .png  
 (Case-insensitive)
 
 ------------------------------------------------------------
 
 🧠 What’s Next?
 
-- Use annotated_images_by_label/ with torchvision.datasets.ImageFolder
-- Train models like ResNet-50 or ResNet-101
-- Convert to YOLO format with labelme2yolo if needed
+- Use `annotated_images_by_label/` with `torchvision.datasets.ImageFolder`  
+- Train models like ResNet-50, ResNet-101  
+- For YOLO, convert using LabelMe to YOLO tools like `labelme2yolo`
 
 ------------------------------------------------------------
 
-Maintained by: Tamim Adnan
-Tools: Python · LabelMe · PyTorch · Matplotlib · ResNet
+Maintained by: Tamim Adnan  
+Tools: Python · LabelMe · PyTorch · Matplotlib · ResNet  
