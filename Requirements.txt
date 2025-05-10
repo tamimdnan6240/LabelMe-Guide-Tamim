@@ -1,0 +1,48 @@
+# Common libraries
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+tqdm
+
+# PyTorch libraries
+torch
+torchvision
+skorch
+
+# TensorFlow and Keras
+tensorflow
+keras
+
+# Computer vision libraries
+opencv-python
+
+# Deep learning utilities and models
+ultralytics  # YOLOv5 or other models
+
+# Visualization tools
+visdom
+
+# Additional utilities
+setproctitle
+PyMuPDF  # for working with PDF documents
+
+
+# segmentation_models_pytorch albumentations
+
+## for HPC, to install something in pytorch, First, module load pytorch, then pip install segmentation_models_pytorch albumentations
+
+
+## -u means telling the pip commnand to upgrade and -q means telling the pip command to remove the error meassages. 
+## torchvision cudatoolkit=10.0 -c Pytorch Tamim: for cuda environment
+## opencv2 installation code: conda install py-opencv
+## cuda tools cudatoolkit=10.0 -c Pytorch NB: cudatoolkit is for CUDA 10
+
+## pip install -r Requirements.txt
+## torch.cuda.memory_summary(device=None, abbreviated=False)
+#  python -c "import torch; print(import torch; print(torch.__version__)"
+#  Use this code to clear your memory: python import torch torch.cuda.empty_cache())
+## nvidia-smi  ## Tamim: for cuda summary
+##conda config --add channels conda-forge
+## conda install imgaug
