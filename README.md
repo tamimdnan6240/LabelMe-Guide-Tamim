@@ -8,7 +8,6 @@ This repository enables efficient image annotation for **vehicle**, **pedestrian
 
 Open **Anaconda Prompt** and run the following commands to create and configure the virtual environment:
 
-```bash
 conda create -n labelme_env python=3.9 -y
 conda activate labelme_env
 
