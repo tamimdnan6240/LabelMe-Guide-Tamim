@@ -12,8 +12,11 @@ This repository enables efficient image annotation for vehicle, pedestrian, trai
 Use Anaconda Prompt to create a clean environment and install the required tools:
 
 conda create -n labelme_env python=3.9 -y
+
 conda activate labelme_env
+
 pip install pyqt5==5.15.9
+
 pip install labelme==5.2.1
 
 ✅ This avoids common plugin and GUI issues that occur with newer versions of LabelMe or PyQt.
@@ -27,11 +30,13 @@ Your project folder should look like this:
 project_root/
 ├── cnn_images/                        # Input images to annotate
 ├── Inclusion-exclusion-labels/       # Output LabelMe .json files
+
 ├── cnn_dataset_ready/                # Final labeled dataset sorted by class
 │   ├── vehicle/
 │   ├── pedestrian/
 │   ├── train/
 │   └── empty/
+
 ├── LabelMe_guide_Tamim.py            # Custom Python script for annotation workflow
 
 ------------------------------------------------------------
