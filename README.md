@@ -15,7 +15,7 @@ conda activate labelme_env
 pip install pyqt5==5.15.9
 pip install labelme==5.2.1
 
-# Annotation Workflow (Run Every Time You Label)
+## ✅ 2. Annotation Workflow (Run Every Time You Label)
 # Activate environment
 conda activate labelme_env
 
