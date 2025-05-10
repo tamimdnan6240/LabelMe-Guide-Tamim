@@ -1,6 +1,5 @@
 import glob
 from PIL import Image
-import matplotlib.pyplot as plt
 import os
 import shutil
 
@@ -29,48 +28,42 @@ for cls in class_key_map.values():
 image_paths = []
 for ext in ['*.jpg', '*.jpeg', '*.png', '*.JPG', '*.PNG']:
     image_paths.extend(glob.glob(os.path.join(image_folder, ext)))
-
-# 🔤 Sort the image list for consistent processing order
 image_paths = sorted(image_paths)
 
 # 🔁 Loop through every image for labeling
 for img_path in image_paths:
-    # 🧾 Get the filename and its stem (without extension)
     img_name = os.path.basename(img_path)
     img_stem = os.path.splitext(img_name)[0]
-
-    # 📄 Build the expected .json path where LabelMe will save the annotation
     json_path = os.path.join(json_folder, img_stem + ".json")
 
+    print(f"\n🔍 Now annotate the image in LabelMe:")
+    print(f"🖼️  Image: {img_name}")
+    print(f"💾 Expected .json file: {json_path}")
+
+    # 🖼️ Preview image in system image viewer (not matplotlib)
     try:
-        # 🖼️ Open and display the image using matplotlib
         img = Image.open(img_path)
-        plt.imshow(img)
-        plt.axis('off')
-        plt.title(f"Now annotate and then label:\n{img_name}")
-        plt.show()
+        img.show()
     except Exception as e:
-        # ❌ Skip the image if it fails to load
-        print(f"❌ Failed to load image {img_name}. Skipping. Error: {e}")
+        print(f"❌ Could not preview image {img_name}. Error: {e}")
         continue
 
-    # 🔔 Remind the user to annotate the image using LabelMe GUI
-    print(f"📝 Annotate this image using LabelMe GUI.")
-    print(f"💾 Save the .json file as: {json_path}")
+    print("📝 Please open the image in LabelMe GUI and draw bounding boxes.")
+    print("💾 Save the annotation as a .json file with the same name.")
 
-    # ⏳ Wait until the corresponding .json file appears (i.e., annotation is saved)
+    # ⏳ Wait until the .json file exists
     while not os.path.exists(json_path):
         input("🔁 Press ENTER after saving the .json annotation...")
 
-    # ⌨️ Ask the user to classify the image using a keyboard shortcut
+    # ⌨️ Ask for the class label
     label_key = input("▶️ Enter label key [v=vehicle, p=pedestrian, t=train, e=empty]: ").lower().strip()
 
-    # ✅ If the pressed key is valid, copy the image to its class folder
     if label_key in class_key_map:
         label = class_key_map[label_key]
         dst_path = os.path.join(output_folder, label, img_name)
         shutil.copy(img_path, dst_path)
-        print(f"✅ Copied image to: {dst_path}\n{'-'*60}")
+        print(f"✅ Copied image to: {dst_path}")
     else:
-        # ❗ Warn the user and skip the image if the key is invalid
-        print(f"❌ Invalid key '{label_key}'. Skipped {img_name}.\n{'-'*60}")
+        print(f"❌ Invalid key '{label_key}'. Skipped {img_name}.")
+
+    print("-" * 60)
