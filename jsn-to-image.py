@@ -3,12 +3,12 @@ import json
 import glob
 from PIL import Image, ImageDraw
 
-# === SET PATHS ===
+# === CONFIG ===
 input_root = r"C:\Users\tadnan\Downloads\final-dataset"
-output_root = os.path.join(input_root, "annotated_images")
+output_root = os.path.join(input_root, "annotated_images_by_label")
 os.makedirs(output_root, exist_ok=True)
 
-# === FIND ALL JSON FILES ===
+# === FIND JSON FILES ===
 json_files = glob.glob(os.path.join(input_root, '**', '*.json'), recursive=True)
 print(f"🔍 Found {len(json_files)} JSON file(s).")
 
@@ -20,27 +20,31 @@ for json_path in json_files:
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # === STEP 1: CLEAN imagePath ===
+        # === CLEAN imagePath ===
         original_path = data.get('imagePath', '')
         image_file_name = os.path.basename(original_path)
-        data['imagePath'] = image_file_name  # Clean absolute path to just filename
+        data['imagePath'] = image_file_name
 
         # Overwrite cleaned JSON file
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4)
-
         cleaned += 1
 
-        # === STEP 2: LOAD IMAGE ===
+        # === LOAD IMAGE ===
         image_path = os.path.join(os.path.dirname(json_path), image_file_name)
         if not os.path.exists(image_path):
-            print(f"⚠️ Image not found for: {json_path}")
+            print(f"⚠️ Image not found: {image_path}")
             continue
 
         image = Image.open(image_path).convert("RGB")
         draw = ImageDraw.Draw(image)
 
-        # === STEP 3: DRAW ANNOTATIONS ===
+        # === GET LABEL (first one only for folder naming) ===
+        first_label = data['shapes'][0]['label']
+        class_folder = os.path.join(output_root, first_label)
+        os.makedirs(class_folder, exist_ok=True)
+
+        # === DRAW ANNOTATIONS ===
         for shape in data['shapes']:
             points = shape['points']
             label = shape['label']
@@ -51,14 +55,14 @@ for json_path in json_files:
                 draw.polygon([tuple(p) for p in points], outline='blue')
                 draw.text(tuple(points[0]), label, fill='blue')
 
-        # === STEP 4: SAVE ANNOTATED IMAGE ===
+        # === SAVE TO CLASS FOLDER ===
         save_name = os.path.splitext(image_file_name)[0] + "_annotated.jpg"
-        save_path = os.path.join(output_root, save_name)
+        save_path = os.path.join(class_folder, save_name)
         image.save(save_path)
         converted += 1
 
     except Exception as e:
         print(f"❌ Error processing {json_path}: {e}")
 
-print(f"\n✅ Cleaned imagePath in {cleaned} JSON file(s).")
-print(f"✅ Converted {converted} annotated image(s) saved to: {output_root}")
+print(f"\n✅ Cleaned 'imagePath' in {cleaned} JSON file(s).")
+print(f"✅ Saved {converted} annotated image(s) into label-based folders under: {output_root}")
