@@ -30,13 +30,11 @@ Your project folder should look like this:
 project_root/
 ├── cnn_images/                        # Input images to annotate
 ├── Inclusion-exclusion-labels/       # Output LabelMe .json files
-
 ├── cnn_dataset_ready/                # Final labeled dataset sorted by class
 │   ├── vehicle/
 │   ├── pedestrian/
 │   ├── train/
 │   └── empty/
-
 ├── LabelMe_guide_Tamim.py            # Custom Python script for annotation workflow
 
 ------------------------------------------------------------
