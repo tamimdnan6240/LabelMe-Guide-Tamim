@@ -13,10 +13,10 @@ if not os.path.exists(labelme_cmd):
 
 # ✅ Label definitions (letter hints + real names)
 labels = [
-    "Vehicle",
-    "Train",
-    "Empty crossing",
-    "Pedestrian"
+    "One vehicles",
+    "Two vehicles",
+    "Three vehicles",
+    "Four or more vehicles"
 ]
 labels_path = os.path.join(image_folder, "default_labels.txt")
 
