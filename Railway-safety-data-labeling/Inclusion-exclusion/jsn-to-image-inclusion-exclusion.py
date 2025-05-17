@@ -5,7 +5,7 @@ import re
 from PIL import Image, ImageDraw
 
 # === CONFIG ===
-input_root = r"C:\Users\tadnan\Downloads\Original-data\Original-data\Inclusion-exclusion-dataset"
+input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset"
 output_root = os.path.join(input_root, "annotated_images_by_label")
 os.makedirs(output_root, exist_ok=True)
 
