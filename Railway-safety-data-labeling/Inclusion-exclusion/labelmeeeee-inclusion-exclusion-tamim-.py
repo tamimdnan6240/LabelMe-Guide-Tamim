@@ -4,7 +4,7 @@ import subprocess
 import shutil
 
 # ✅ Folder containing your images
-image_folder = r"C:\Users\tadnan\Downloads\Original-data\Original-data\Inclusion-exclusion-dataset" 
+image_folder = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset" 
 
 # ✅ Try to locate labelme executable
 labelme_cmd = shutil.which("labelme") or r"C:\Users\tadnan\AppData\Local\anaconda3\Scripts\labelme.exe"
