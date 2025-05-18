@@ -13,7 +13,7 @@ if not os.path.exists(labelme_cmd):
 
 # ✅ Label definitions (letter hints + real names)
 labels = [
-    "One vehicles",
+    "One vehicle",
     "Two vehicles",
     "Three vehicles",
     "Four or more vehicles"
