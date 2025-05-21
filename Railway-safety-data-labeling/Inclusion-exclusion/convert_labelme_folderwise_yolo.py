@@ -10,7 +10,7 @@ input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-datase
 output_root = os.path.join(input_root, "YOLOv8-ready")
 
 # These subfolders should exist in input_root
-class_folders = ["Vehicle", "TRAIN", "Pedestrian", "Empty crossing"]
+class_folders = ["Vehicle", "TRAIN", "Pedestraints", "Crossing"]
 
 # === CLEAN OUTPUT ===
 for class_name in class_folders:
