@@ -7,7 +7,7 @@ from PIL import Image
 
 # === CONFIGURATION ===
 input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset"
-output_root = os.path.join(input_root, "YOLOv8-ready")
+output_root = os.path.join(input_root, "YOLOv8-ready-inclusion-exclusion")
 
 # These subfolders should exist in input_root
 class_folders = ["Vehicle", "TRAIN", "Pedestraints", "Crossing"]
