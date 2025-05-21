@@ -1,4 +1,3 @@
-
 import os
 import json
 import glob
@@ -9,11 +8,16 @@ from PIL import Image
 input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset"
 output_root = os.path.join(input_root, "YOLOv8-ready-inclusion-exclusion")
 
-# These subfolders should exist in input_root
-class_folders = ["Vehicle", "TRAIN", "Pedestraints", "Crossing"]
+# Folder-to-class name mapping (actual folders : clean class labels)
+class_folders = {
+    "Vehicle": "vehicle",
+    "TRAIN": "train",
+    "Pedestraints": "pedestrian",  # Corrected logical class name
+    "Crossing": "empty crossing"   # Corrected logical class name
+}
 
 # === CLEAN OUTPUT ===
-for class_name in class_folders:
+for folder, class_name in class_folders.items():
     os.makedirs(os.path.join(output_root, "images", class_name), exist_ok=True)
     os.makedirs(os.path.join(output_root, "labels", class_name), exist_ok=True)
 
@@ -38,9 +42,9 @@ def get_yolo_bbox(points, img_w, img_h):
     return x_center, y_center, width, height
 
 # === MAIN LOOP ===
-for class_name in class_folders:
-    json_files = glob.glob(os.path.join(input_root, class_name, "*.json"))
-    print(f"📁 Converting {len(json_files)} annotations from '{class_name}'...")
+for folder_name, class_name in class_folders.items():
+    json_files = glob.glob(os.path.join(input_root, folder_name, "*.json"))
+    print(f"📁 Converting {len(json_files)} annotations from folder '{folder_name}' → class '{class_name}'")
 
     for json_path in json_files:
         try:
