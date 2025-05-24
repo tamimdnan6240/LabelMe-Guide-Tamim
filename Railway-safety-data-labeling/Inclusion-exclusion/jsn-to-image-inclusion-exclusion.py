@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw
 
 # === CONFIG ===
 input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset"
-output_root = os.path.join(input_root, "annotated_images_by_label")
+output_root = os.path.join(input_root, "CNN-inclusion-exlcusion-labeled-dataset")
 os.makedirs(output_root, exist_ok=True)
 
 # === SANITIZER: make label safe for folder names ===
