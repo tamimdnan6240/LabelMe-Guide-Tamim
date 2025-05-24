@@ -5,7 +5,7 @@ import re
 from PIL import Image, ImageDraw
 
 # === CONFIG ===
-input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Vehicle-intensity-dataset"
+input_root = r"C:\Users\tadnan\Downloads\Labeled-data\CNN-Vehicle-intensity-dataset"
 output_root = os.path.join(input_root, "vehicle-intensity-labeled-dataset")
 os.makedirs(output_root, exist_ok=True)
 
