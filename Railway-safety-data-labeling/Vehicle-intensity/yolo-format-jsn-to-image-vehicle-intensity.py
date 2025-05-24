@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Vehicle-intensity-dataset"
 
 # Output folders for YOLOv8-compatible image and label data
-output_root = os.path.join(input_root, "YOLOv8-ready")
+output_root = os.path.join(input_root, "YOLOv8-vehicle-intensity-labeled-dataset")
 image_out = os.path.join(output_root, "images")  # Where images will be saved
 label_out = os.path.join(output_root, "labels")  # Where YOLO .txt files will be saved
 
