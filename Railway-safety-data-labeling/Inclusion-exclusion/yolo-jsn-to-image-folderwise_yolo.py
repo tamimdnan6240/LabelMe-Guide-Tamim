@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw
 import numpy as np
 
 # === CONFIGURATION ===
-input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset"
+input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-json-exclusion-dataset"
 output_root = os.path.join(input_root, "YOLOv8-ready-inclusion-exclusion")
 label_format = "txt"  # Change to "png" if you want label masks instead
 
