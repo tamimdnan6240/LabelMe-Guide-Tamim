@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 # === CONFIGURATION ===
 
 # Path to the root folder containing annotated images and JSON label files
-input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset"
+input_root = r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-json-exclusion-dataset"
 
 # Output folders for YOLOv8-compatible image and label data
 output_root = os.path.join(input_root, "YOLOv8-ready-multiclassification")
