@@ -46,6 +46,7 @@ project_root/
 ------------------------------------------------------------
 
 ✅ 3. Annotation Workflow
+This workflow is the same for each tasks. Use the same method for all tasks. 
 
 1. Activate environment:  
    conda activate labelme_env  
@@ -68,7 +69,7 @@ project_root/
      V = vehicle, P = pedestrian, T = train, E = empty  
 
 7. Convert saved JSONs into cropped images:  
-   python jsn-to-image.py  
+   python jsn-to-image-inclusion-exclusion.py 
 
 Your dataset is now ready for CNN training. For YOLO, convert JSONs using `labelme2yolo`.
 
