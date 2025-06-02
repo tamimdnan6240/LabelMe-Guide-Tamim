@@ -53,7 +53,7 @@ project_root/
 2. Edit `labelmeeeee-inclusion-exclusion-tamim-.py` to point to the input image folder (r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset")  
 
 3. Run:  
-   python labelmeeeee-jsn-files-tamim-.py  
+   python labelmeeeee-inclusion-exclusion-tamim-.py  
 
 4. In a second terminal, launch LabelMe will open one by one images 
 
@@ -65,7 +65,7 @@ project_root/
 6. In the script terminal:  
    - Press `ENTER`  
    - Enter label key:  
-     v = vehicle, p = pedestrian, t = train, e = empty  
+     V = vehicle, P = pedestrian, T = train, E = empty  
 
 7. Convert saved JSONs into cropped images:  
    python jsn-to-image.py  
