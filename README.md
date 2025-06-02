@@ -50,7 +50,7 @@ project_root/
 1. Activate environment:  
    conda activate labelme_env  
 
-2. Edit `labelmeeeee-jsn-files-tamim-.py` to point to the input image folder (`annotated_images_by_label/`)  
+2. Edit `labelmeeeee-inclusion-exclusion-tamim-.py` to point to the input image folder (r"C:\Users\tadnan\Downloads\Labeled-data\Inclusion-exclusion-dataset")  
 
 3. Run:  
    python labelmeeeee-jsn-files-tamim-.py  
